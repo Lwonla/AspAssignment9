@@ -1,0 +1,51 @@
+﻿@model RegisterViewModel
+
+<section class="contact-form">
+    <div class="container">
+        <div class="title">Please register a account.</div>
+        <form asp-action="Index" asp-controller="Register" method="post" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="firstname form-group">
+                <label asp-for="FirstName" class="form-label"></label>
+                <input asp-for="FirstName" class="form-control" onkeyup="validateText(event)"/>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="lastname form-group">
+                    <label asp-for="LastName" class="form-label"></label>
+                <input asp-for="LastName" class="form-control" onkeyup="validateText(event)" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="email form-group">
+                    <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" type="email" class="form-control" onkeyup="validateEmail(event)" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="password form-group">
+                    <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" type="password" class="form-control" onkeyup="validatePassword(event)" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="confirmpassword form-group">
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" onkeyup="validatePassword(event)" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="streetname form-group">
+                <label asp-for="StreetName" class="form-label"></label>
+                <input asp-for="StreetName" class="form-control" onkeyup="validateText(event)" />
+                <span asp-validation-for="StreetName" class="text-danger"></span>
+            </div>
+            <div class="postalcode form-group">
+                <label asp-for="PostalCode" class="form-label"></label>
+                <input asp-for="PostalCode" class="form-control" onkeyup="validatePostalCode(event)" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+            <div class="city form-group">
+                <label asp-for="City" class="form-label"></label>
+                <input asp-for="City" class="form-control" onkeyup="validateText(event)" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</section>

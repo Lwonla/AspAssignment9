@@ -1,0 +1,36 @@
+﻿@model int
+@inject ProductRepository productRepo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@{
+    var product = await productRepo.GetAsync(x => x.Id == Model);
+}
+
+@if(product != null)
+{
+    <div>ID: @Model</div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@product.Title</h2>
+            <div>
+                @foreach (var tag in product.ProductsTags)
+                {
+                    <span class="me-2">@tag.Tag.TagName</span>
+                }
+            </div>
+            <p>@product.Description</p>
+            <p>@product.Price</p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Product not found</h2>
+        </div>
+    </div>
+}

@@ -1,0 +1,41 @@
+﻿@model ContactFormViewModel
+
+<section class="contact-form">
+    <div class="container">
+        <div class="title">Please write a message to us.</div>
+        <form asp-action="Index" asp-controller="Contacts" method="post" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="name form-group">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" onkeyup="validateText(event)" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="email form-group">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" type="email" class="form-control" onkeyup="validateEmail(event)" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="phoneNumber form-group">
+                <label for="phone">Phone Number (optional)</label>
+                <input id="phone" type="text">
+            </div>
+            <div class="companyName form-group">
+                <label for="company">Company (optional)</label>
+                <input id="company" type="text">
+            </div>
+            <div class="message form-group">
+                <label asp-for="Message" class="form-label"></label>
+                <textarea asp-for="Message" class="form-control" rows="3" onkeyup="validateText(event)"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+@*            <div class="terms form-checkbox-group">
+                <label class="custom-checkbox">
+                    Save my name, email in the this browser for the next time I comment.
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+            </div>*@
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+</section>

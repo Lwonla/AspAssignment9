@@ -1,0 +1,23 @@
+﻿@inject ProductRepository productRepo
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div>
+    @foreach(var product in await productRepo.GetAsync())
+    {
+        <div>
+
+            <div><a asp-action="details" asp-route-id="@product.Id">@product.Title</a></div>
+
+        </div>
+        <div>
+            @foreach(var tag in product.ProductsTags)
+            {
+                <span class="me-2">@tag.Tag.TagName</span>
+            }
+        </div>
+    }
+
+</div>

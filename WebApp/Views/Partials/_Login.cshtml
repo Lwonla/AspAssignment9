@@ -1,0 +1,23 @@
+﻿@model LoginViewModel
+
+<section class="contact-form">
+    <div class="container">
+        <div class="title">Please login.
+        <a class="link" asp-controller="Register" asp-action="Index">Don´t have an account? Create one here!</a>
+        </div>
+        <form asp-action="Index" asp-controller="Login" method="post" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="email form-group">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" type="email" class="form-control" onkeyup="validateEmail(event)" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="password form-group">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" type="password" class="form-control" onkeyup="validatePassword(event)" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,78 @@
+﻿@model WebApp.Models.Entities.UnitEntity
+@*@model WebApp.Models.ViewModels.MyCombinedViewModel*@
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<section class="contact-form">
+    <div class="container">
+        <div class="title">Please write something to us</div>
+
+<h1>Details</h1>
+
+<div>
+    <h4>UnitEntity</h4>
+    <hr />
+    <dl class="row">
+
+@*        <dt class="col-sm-2">
+        </dt>*@
+        <dt class="col-sm-12">
+        <img src="~/@Url.Content(Model.ImageUrl)" alt="NoShow" />
+        </dt>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Ingress)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Ingress)
+                </dd>
+
+
+
+                @*
+                <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+       <dd class="col-sm-10">
+            <img src="~/@Url.Content(Model.ImageUrl)" alt="NoShow" />
+        </dd>*@
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+    </dl>
+</div>
+<div>
+            @if (User.IsInRole("Admin")) {
+                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit | </a>
+            }
+            <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+    </div>
+</section>

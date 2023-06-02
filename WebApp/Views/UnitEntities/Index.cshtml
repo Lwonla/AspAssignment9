@@ -1,0 +1,92 @@
+﻿@*@model IEnumerable<WebApp.Models.Entities.UnitEntity>*@
+@model UnitCategoryViewModel
+@{ ViewData["Title"] = "unitProductIndex and search"; }
+<h1>unitProductIndex and search</h1>
+<section class="contact-form">
+    <div class="container">
+        <div class="title">
+            Search unitProducts headphones
+        </div>
+        <div>
+            <form asp-controller="UnitEntities" asp-action="Index" method="get">
+                <p>
+                    Search unitProduct on title:
+                    <input type="text" asp-for="SearchString" />
+                        <button type="submit" value="Search" class="btn btn-primary">Search</button>
+    @*                  <input class="clear-button" type="reset" value="Clear" />*@
+                    Filter unitProducts in Categories:<br />
+                    <select asp-for="UnitCategory" asp-items="Model.Categories">
+                        <option value="">All</option>
+                    </select>
+                    <button type="submit" value="Filter" class="btn btn-primary">Filter</button>
+                </p>
+            </form>
+        </div>
+    @{
+        if (User.IsInRole("Admin"))
+        {
+            <p><a asp-action="Create">Create a new unitProduct</a></p>
+        }
+    }
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Units![0].Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Units![0].Description)
+                    </th>
+@*                  <th>
+                        @Html.DisplayNameFor(model => model.Units![0].Ingress)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.Units![0].ImageUrl)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Units![0].Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Units![0].Category)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model.Units!) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+@*              <td>
+                    @Html.DisplayFor(modelItem => item.Ingress)
+                </td>*@
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @{
+                        if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit | </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id"> Delete | </a>
+                        }
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</section>
+
